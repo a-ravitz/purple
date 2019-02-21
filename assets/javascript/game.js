@@ -25,6 +25,7 @@ var winsText = document.getElementById("winsText");
 var guessesRemaining = document.getElementById("guessesRemaining");
 var wins = document.getElementById("wins");
 var answerArray = [];
+var guesses = [];
 
 // generates the random words for the game
 var words = [
@@ -39,17 +40,25 @@ var randomWord = words[Math.floor(Math.random() * words.length)];
     }
 
 // user input
-    document.onkeyup = function(event) {
-    var userGuess = onkey.event 
+document.onkeyup = function(event) {
+    var userGuess = event.key; 
+ 
+    for (var a = 0; a < randomWord.length; a++) {
+        
+        if(userGuess === randomWord[a]) {
+            answerArray[a] = randomWord[a];
+            console.log("right"); 
+        } else {
+            
+            console.log("wrong");
+        }
+
     }
+    guesses.push(userGuess);
+}
 
 directionsText.textContent = "banana";
 spaces.textContent = answerArray;
 winsText.textContent ="wins: " + wins;
-guessesRemaining.textContent ="Guesses Remaining: " + guessesRemaining;
-
-
-
-
-
+guessesRemaining.textContent ="Guessed letters: " + guesses;
 
