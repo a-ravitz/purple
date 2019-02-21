@@ -19,43 +19,87 @@
 
 // step 5. make it so when proper letters are guessed they are revealed in order.
 
-var directionsText = document.getElementById("directionsText").innerHTML = "Lets Play!"
-var guessesRemaining = document.getElementById("guessesRemaining");
+
+var guessesRemaining = 10;
+document.getElementById("guessesRemaining").innerHtml = guessesRemaining;
+
 var wins = document.getElementById("winsText").innerHTML = 0;
+
+var wrongArray = [];
+document.getElementById("guessedLetters").innerHTML = wrongArray;
+
 var answerArray = [];
-var wrongGuess = [];
+    document.getElementById("spaces").innerHTML = answerArray;
+
 // generates the random words for the game
 var words = [
-    "rescue", "afterthought", "opisthosomal", "obnixely", "pallasethesia", "gonfalonier", "zooculture", "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"
+    "rescue", "aerthought", "opisthosomal", "obnixely", "pallasethesia", "gonfalonier", "zooculture", "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"
 ];
 var randomWord = words[Math.floor(Math.random() * words.length)];
 var split = randomWord.split("");
-// user input
-document.onkeyup = function(event) {
-    var userText = event.key.toLowerCase(); 
-    // console.log(userText);
+
+
 
 
 // creates the array of _ _ _ _ _ _ _ 
-    for (var i = 0; i < split.length; i++) {
-            answerArray[i]= "_";
-            };
-            // console.log(split);
-            // console.log(randomWord);
-            
-
-    for (var a = 0; a < split.length; a++) {
-
-        if(userText === split[a]) {
-            // split[a] = answerArray[a];
-            console.log("right"); 
-        } 
-        else {
-            console.log("wrong")
-        
-        } 
+for (var i = 0; i < split.length; i++) {
+    answerArray[i]= ("_");
     };
-    wrongGuess.push(userText);
+    // console.log(split);
+    // console.log(randomWord);
+    document.getElementById("spaces").innerHTML = answerArray;
+
+    // user input
+document.onkeyup = function uniKeyCode(event) {
+
+    var x = event.keycode; 
+
+        if ( x > 90 || x < 57 ) {
+            console.log(oops);
+
+        } else {
+
+        var userText = event.key.toLowerCase(); 
+            console.log(userText);
+        
+
+
+            var matching = function () {
+            var match = false; 
+
+                for (var a = 0; a < split.length; a++) {
+
+                    if(userText === split[a]) {
+                        match = true; 
+                        answerArray[a] = split[a];
+                        document.getElementById("spaces").innerHTML = answerArray.join(" ");
+                    } 
+                }    
+
+                if (match === false) {
+                    if (wrongArray.includes(userText)) {
+
+                    } else {
+                    guessesRemaining--; 
+                    wrongArray.push(userText);
+                    document.getElementById("guessedLetters").innerHTML = wrongArray.join(" ")
+        
+                    }
+                }
+                
+            }   
+            matching(userText)
+
+            if (guessesRemaining <= 0) {
+                if (answerArray === split){
+                    wins++;
+                    alert("congrats!")
+                } else {
+                alert("Game over!");
+            }
+
+            
+        }
+    }
 };
-document.getElementById("spaces").innerHTML = wrongGuess;
-document.getElementById("wrongGuess").innerHTML = wrongGuess;
+
