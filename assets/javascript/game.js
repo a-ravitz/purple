@@ -19,46 +19,43 @@
 
 // step 5. make it so when proper letters are guessed they are revealed in order.
 
-// global variables for the game 
-var directionsText = document.getElementById("directionsText");
-var winsText = document.getElementById("winsText");
+var directionsText = document.getElementById("directionsText").innerHTML = "Lets Play!"
 var guessesRemaining = document.getElementById("guessesRemaining");
-var wins = document.getElementById("wins");
+var wins = document.getElementById("winsText").innerHTML = 0;
 var answerArray = [];
-var guesses = [];
-
+var wrongGuess = [];
 // generates the random words for the game
 var words = [
     "rescue", "afterthought", "opisthosomal", "obnixely", "pallasethesia", "gonfalonier", "zooculture", "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"
 ];
 var randomWord = words[Math.floor(Math.random() * words.length)];
-
-// creates the array of _ _ _ _ _ _ _ 
-    for (var i = 0; i < randomWord.length; i++) {
-            answerArray[i] = "_";
-
-    }
-
+var split = randomWord.split("");
 // user input
 document.onkeyup = function(event) {
-    var userGuess = event.key; 
- 
-    for (var a = 0; a < randomWord.length; a++) {
-        
-        if(userGuess === randomWord[a]) {
-            answerArray[a] = randomWord[a];
-            console.log("right"); 
-        } else {
+    var userText = event.key.toLowerCase(); 
+    // console.log(userText);
+
+
+// creates the array of _ _ _ _ _ _ _ 
+    for (var i = 0; i < split.length; i++) {
+            answerArray[i]= "_";
+            };
+            // console.log(split);
+            // console.log(randomWord);
             
-            console.log("wrong");
-        }
 
-    }
-    guesses.push(userGuess);
-}
+    for (var a = 0; a < split.length; a++) {
 
-directionsText.textContent = "banana";
-spaces.textContent = answerArray;
-winsText.textContent ="wins: " + wins;
-guessesRemaining.textContent ="Guessed letters: " + guesses;
-
+        if(userText === split[a]) {
+            // split[a] = answerArray[a];
+            console.log("right"); 
+        } 
+        else {
+            console.log("wrong")
+        
+        } 
+    };
+    wrongGuess.push(userText);
+};
+document.getElementById("spaces").innerHTML = wrongGuess;
+document.getElementById("wrongGuess").innerHTML = wrongGuess;
