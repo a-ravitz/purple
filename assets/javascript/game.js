@@ -12,7 +12,7 @@
 
 
 
-// step 3. make it so that when you guess a proper letter it prints it to the screen 
+
 
 // step 4. make a function that prints wrong letters to another variable.
 
@@ -27,7 +27,7 @@ document.onkeyup = function event() {
 
 var winsText = document.getElementById("winsText");
 var lossesText = document.getElementById("lossesText");
-var guessNum = 8;
+var guessNum = 10;
 var wrongArray = [];
 var blankSpaces = [];
 var blanks = document.getElementById("spaces");
@@ -36,12 +36,8 @@ directions.innerHTML = "Press Any Key To Start";
 var guessesLeft = document.getElementById("guessesRemaining");
 guessesLeft.innerHTML = ""; 
 var guessed = document.getElementById("guessedLetters");
-
-
-
+var split = ""; 
 //game start//
-
-    
         
         directions.innerHTML = "";
         guessesLeft.innerHTML = "Guesses Remaining : " + guessNum;
@@ -49,19 +45,33 @@ var guessed = document.getElementById("guessedLetters");
         winsText.innerHTML ="Wins : " + wins;
     
 // step 2. make a function that generates a random word when the game starts
+
+        
         var words = [
             "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"];
-        var randomWord = words[Math.floor(Math.random() * words.length)];
-        var split = randomWord.split("");
+        function splitRandomWord() {
+            var randomWord = words[Math.floor(Math.random() * words.length)];
+            return randomWord.split("");
+         } 
 
+         var gameWord = splitRandomWord(words)
+
+// a function that resets the game         
+
+         function resetGame () {
+            wrongArray = [];
+            blankSpaces = [];
+            guessNum = 10;
+            splitRandomWord(words);
+        } 
 
 // creates the array of _ _ _ _ _ _ _ 
 
-            for (var i = 0; i < split.length; i++) {
+            for (var i = 0; i < gameWord.length; i++) {
                 blankSpaces[i]= ("_");
             };
 
-                console.log(randomWord); 
+                // console.log(randomWord); 
                 console.log(blankSpaces);
             blanks.innerHTML = blankSpaces;
 
@@ -81,17 +91,22 @@ var guessed = document.getElementById("guessedLetters");
         
                 }
 
+// step 3. make it so that when you guess a proper letter it prints it to the screen 
+
             var matching = function () {
                 var match = false; 
 
-                for (var a = 0; a < split.length; a++) {
+                for (var a = 0; a < gameWord.length; a++) {
 
-                    if (userText === split[a]) {
+                    if (userText === gameWord[a]) {
                         match = true; 
-                        blankSpaces[a] = split[a];
+                        blankSpaces[a] = gameWord[a];
                         blanks.innerHTML = blankSpaces.join(" ");
                     }
-                    
+                     else if (blankSpaces === gameWord) {
+                         reset();
+                     }
+
                 }    
 
                 if (match === false) {
@@ -105,6 +120,7 @@ var guessed = document.getElementById("guessedLetters");
                     guessNum--;
                     guessesLeft.textContent = "Guesses Remaining : " + guessNum;
                     
+                    
 
                     }
                     
@@ -113,13 +129,14 @@ var guessed = document.getElementById("guessedLetters");
                 
     
             }
-            if (blankSpaces === split) {
+            if (blankSpaces === gameWord) {
                 wins++;
 
             }else if (guessNum <= 0) {
                 alert("Game Over");
                 losses++;
                 losses.innerhtml = "Losses : " + losses;
+                resetGame();
             }
             matching(userText);
                    
