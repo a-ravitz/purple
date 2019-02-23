@@ -68,7 +68,7 @@ var spacesLength = [];
             blankSpaces = [];
             wordLength = [];
             spacesLength = [];
-            guessNum = "";
+            guessNum = randomWord.length + 5;
             gameStart();
             
     }   
@@ -132,7 +132,7 @@ var spacesLength = [];
                 } else if (guessNum === 1) {
                         alert("just one guess left!")
                 
-                    } else if (guessNum === 0) {
+                    } else if (guessNum === 0 || guessNum < 0) {
                         alert("Game Over");
                         losses++;
                         losses.textContent = "Losses : " + losses;
