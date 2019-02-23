@@ -49,11 +49,6 @@ document.onkeyup = function event() {
         split = randomWord.split("");
         console.log(randomWord);
 }        
-// step 2. make a function that generates a random word when the game starts
-    
-        
-        
-         
 
 // a function that resets the game         
 
@@ -119,26 +114,24 @@ document.onkeyup = function event() {
                     guessNum--;
                     guessesLeft.textContent = "Guesses Remaining : " + guessNum;
                     
-                    
-
                     }
                     
                 } 
-                
-                
-    
-            }
                 if (blankSpaces === randomWord) {
                     wins++;
 
-            } else if (guessNum === 0) {
+            }   else if (guessNum === 0) {
                 alert("Game Over");
                 losses++;
                 losses.textContent = "Losses : " + losses;
                 
+    
+            }
+                
+                
             }
             matching(userText);
-                   
+               
         }   
     resetGame();
 
