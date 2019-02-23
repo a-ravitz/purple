@@ -22,21 +22,21 @@
 var wins = 0;
 var losses = 0;
 
-
-document.onkeyup = function event() {
-
-var winsText = document.getElementById("winsText");
-var lossesText = document.getElementById("lossesText");
 var guessNum = 10;
 var wrongArray = [];
 var blankSpaces = [];
-var blanks = document.getElementById("spaces");
-var directions = document.getElementById("directionsText");
-directions.innerHTML = "Press Any Key To Start";
-var guessesLeft = document.getElementById("guessesRemaining");
-guessesLeft.innerHTML = ""; 
 var guessed = document.getElementById("guessedLetters");
-var split = ""; 
+var guessesLeft = document.getElementById("guessesRemaining");
+var directions = document.getElementById("directionsText");
+var winsText = document.getElementById("winsText");
+var lossesText = document.getElementById("lossesText");
+var blanks = document.getElementById("spaces");
+directions.innerHTML = "Press Any Key To Start";
+guessesLeft.innerHTML = ""; 
+document.onkeyup = function event() {
+
+
+
 //game start//
         
         directions.innerHTML = "";
@@ -102,10 +102,10 @@ var split = "";
                         match = true; 
                         blankSpaces[a] = gameWord[a];
                         blanks.innerHTML = blankSpaces.join(" ");
-                    }
-                     else if (blankSpaces === gameWord) {
+                    
+                    } else if (blankSpaces === gameWord) {
                          reset();
-                     }
+                    }
 
                 }    
 
@@ -129,13 +129,13 @@ var split = "";
                 
     
             }
-            if (blankSpaces === gameWord) {
-                wins++;
+                if (blankSpaces === gameWord) {
+                    wins++;
 
-            }else if (guessNum <= 0) {
+            } else if (guessNum === 0) {
                 alert("Game Over");
                 losses++;
-                losses.innerhtml = "Losses : " + losses;
+                losses.textContent = "Losses : " + losses;
                 resetGame();
             }
             matching(userText);
