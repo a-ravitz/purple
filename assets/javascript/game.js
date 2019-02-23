@@ -32,8 +32,7 @@ var lossesText = document.getElementById("lossesText");
 var blanks = document.getElementById("spaces");
 directions.innerHTML = "Press Any Key To Start";
 guessesLeft.innerHTML = ""; 
-var words = [
-        "cymophanous", "alkanet", "noisy", "tawdry", "pizza", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"];
+var words = ["royal", "artists", "electric", "patriarch", "veronica", "medium", "mussel", "pale", "mauve", "thistle", "orchid", "heliotrope", "phlox", "pizzazz", "liseran", "mulberry", "pearly", "purpureus", "northwestern", "ksu", "pompandpower", "mardigras", "eminence", "byzantium", "pansy", "palatinate", "dark"];
 var randomWord = "";    
 var split = "";
 var wordLength = [];
@@ -67,10 +66,12 @@ var spacesLength = [];
     function resetGame () {
             wrongArray = [];
             blankSpaces = [];
-            guessNum = 10;
+            wordLength = [];
+            spacesLength = [];
+            guessNum = "";
             gameStart();
             
-    } 
+    }   
 
 // creates the array of _ _ _ _ _ _ _ 
 
@@ -122,7 +123,7 @@ var spacesLength = [];
             
 
                 } 
-                if (wordLength.length === randomWord.length || wordLength.length === split.length || spacesLength.length === wordLength.length) {
+                if (wordLength.length === randomWord.length || wordLength.length === split.length || spacesLength.length === wordLength.length || blanks === split) {
                     wins++; wins.textContent = "Wins : " + wins;
                     resetGame();
 
@@ -131,7 +132,7 @@ var spacesLength = [];
                 } else if (guessNum === 1) {
                         alert("just one guess left!")
                 
-                    } else if (guessNum === 0 || spacesLength.length !== wordLength.length) {
+                    } else if (guessNum === 0) {
                         alert("Game Over");
                         losses++;
                         losses.textContent = "Losses : " + losses;
