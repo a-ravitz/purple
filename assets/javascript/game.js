@@ -33,9 +33,11 @@ var lossesText = document.getElementById("lossesText");
 var blanks = document.getElementById("spaces");
 directions.innerHTML = "Press Any Key To Start";
 guessesLeft.innerHTML = ""; 
+var words = [
+        "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"];
+var randomWord = "";    
+var split = "";
 document.onkeyup = function event() {
-
-
 
 //game start//
         
@@ -43,18 +45,15 @@ document.onkeyup = function event() {
         guessesLeft.innerHTML = "Guesses Remaining : " + guessNum;
         lossesText.innerHTML ="Losses : " + losses;
         winsText.innerHTML ="Wins : " + wins;
-    
+        randomWord = words[Math.floor(Math.random() * words.length)];
+        split = randomWord.split("");
+        console.log(randomWord);
+}        
 // step 2. make a function that generates a random word when the game starts
-
+    
         
-        var words = [
-            "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"];
-        function splitRandomWord() {
-            var randomWord = words[Math.floor(Math.random() * words.length)];
-            return randomWord.split("");
-         } 
-
-         var gameWord = splitRandomWord(words)
+        
+         
 
 // a function that resets the game         
 
@@ -62,12 +61,12 @@ document.onkeyup = function event() {
             wrongArray = [];
             blankSpaces = [];
             guessNum = 10;
-            splitRandomWord(words);
+            randomWord;
         } 
 
 // creates the array of _ _ _ _ _ _ _ 
 
-            for (var i = 0; i < gameWord.length; i++) {
+            for (var i = 0; i < split.length; i++) {
                 blankSpaces[i]= ("_");
             };
 
@@ -79,10 +78,10 @@ document.onkeyup = function event() {
 
         document.onkeyup = function uniKeyCode(event) {
 
-            var x = event.keycode; 
+            var x = event.keyCode; 
 
             if ( x > 90 || x < 57 ) {
-                console.log(oops);
+                console.log("oops");
 
                 } else {
 
@@ -96,14 +95,14 @@ document.onkeyup = function event() {
             var matching = function () {
                 var match = false; 
 
-                for (var a = 0; a < gameWord.length; a++) {
+                for (var a = 0; a < split.length; a++) {
 
-                    if (userText === gameWord[a]) {
+                    if (userText === split[a]) {
                         match = true; 
-                        blankSpaces[a] = gameWord[a];
+                        blankSpaces[a] = split[a];
                         blanks.innerHTML = blankSpaces.join(" ");
                     
-                    } else if (blankSpaces === gameWord) {
+                    } else if (blankSpaces === split) {
                          reset();
                     }
 
@@ -129,17 +128,17 @@ document.onkeyup = function event() {
                 
     
             }
-                if (blankSpaces === gameWord) {
+                if (blankSpaces === randomWord) {
                     wins++;
 
             } else if (guessNum === 0) {
                 alert("Game Over");
                 losses++;
                 losses.textContent = "Losses : " + losses;
-                resetGame();
+                
             }
             matching(userText);
                    
         }   
-    }
+    resetGame();
 
