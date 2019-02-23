@@ -21,8 +21,7 @@
 // step 1. create variables for wins, loses, ties, and words 
 var wins = 0;
 var losses = 0;
-
-var guessNum = 10;
+var guessNum = "";
 var wrongArray = [];
 var blankSpaces = [];
 var guessed = document.getElementById("guessedLetters");
@@ -34,13 +33,16 @@ var blanks = document.getElementById("spaces");
 directions.innerHTML = "Press Any Key To Start";
 guessesLeft.innerHTML = ""; 
 var words = [
-        "cymophanous", "alkanet", "noisy", "tawdry", "pizzas", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"];
+        "cymophanous", "alkanet", "noisy", "tawdry", "pizza", "fuel", "line", "shirt", "harm", "nation", "miss", "elite", "switch", "watch", "ambiguous", "drop", "rural", "wheel", "shock", "tease", "release", "yard", "growth", "dinner", "madonna"];
 var randomWord = "";    
 var split = "";
-document.onkeyup = function event() {
+var wordLength = [];
+var spacesLength = [];
 
-//game start//
-        
+
+    //game start//
+    function gameStart() {
+   
         directions.innerHTML = "";
         guessesLeft.innerHTML = "Guesses Remaining : " + guessNum;
         lossesText.innerHTML ="Losses : " + losses;
@@ -48,47 +50,48 @@ document.onkeyup = function event() {
         randomWord = words[Math.floor(Math.random() * words.length)];
         split = randomWord.split("");
         console.log(randomWord);
-}        
+        
+        for (var i = 0; i < split.length; i++) {
+            blankSpaces[i]= ("_");
+            spacesLength.push(blankSpaces);
+        };
+
+            // console.log(randomWord); 
+            console.log(blankSpaces);
+        blanks.innerHTML = blankSpaces;
+        guessNum = randomWord.length + 5;
+    }        
 
 // a function that resets the game         
 
-         function resetGame () {
+    function resetGame () {
             wrongArray = [];
             blankSpaces = [];
             guessNum = 10;
-            randomWord;
-        } 
+            gameStart();
+            
+    } 
 
 // creates the array of _ _ _ _ _ _ _ 
 
-            for (var i = 0; i < split.length; i++) {
-                blankSpaces[i]= ("_");
-            };
-
-                // console.log(randomWord); 
-                console.log(blankSpaces);
-            blanks.innerHTML = blankSpaces;
+            
 
 // user input //
+        // var start = false;  
+        document.onkeyup = function uniKeyCode(event) { 
 
-        document.onkeyup = function uniKeyCode(event) {
-
-            var x = event.keyCode; 
-
-            if ( x > 90 || x < 57 ) {
+            var x = event.keyCode;
+            var match = false; 
+            if ( x > 90 || x < 58 ) {
                 console.log("oops");
 
                 } else {
 
                 var userText = event.key.toLowerCase(); 
+
                 console.log(userText);
         
                 }
-
-// step 3. make it so that when you guess a proper letter it prints it to the screen 
-
-            var matching = function () {
-                var match = false; 
 
                 for (var a = 0; a < split.length; a++) {
 
@@ -96,10 +99,11 @@ document.onkeyup = function event() {
                         match = true; 
                         blankSpaces[a] = split[a];
                         blanks.innerHTML = blankSpaces.join(" ");
+                        wordLength.push(userText)
+                        guessNum--;
+                        guessesLeft.textContent = "Guesses Remaining : " + guessNum;
                     
-                    } else if (blankSpaces === split) {
-                         reset();
-                    }
+                    } 
 
                 }    
 
@@ -115,23 +119,29 @@ document.onkeyup = function event() {
                     guessesLeft.textContent = "Guesses Remaining : " + guessNum;
                     
                     }
-                    
+            
+
                 } 
-                if (blankSpaces === randomWord) {
-                    wins++;
+                if (wordLength.length === randomWord.length || wordLength.length === split.length || spacesLength.length === wordLength.length) {
+                    wins++; wins.textContent = "Wins : " + wins;
+                    resetGame();
 
-            }   else if (guessNum === 0) {
-                alert("Game Over");
-                losses++;
-                losses.textContent = "Losses : " + losses;
+                    // letters < split.length = lose
                 
-    
-            }
+                } else if (guessNum === 1) {
+                        alert("just one guess left!")
                 
+                    } else if (guessNum === 0 || spacesLength.length !== wordLength.length) {
+                        alert("Game Over");
+                        losses++;
+                        losses.textContent = "Losses : " + losses;
+                        resetGame()
+                    }
                 
-            }
-            matching(userText);
+        }
+           
                
-        }   
-    resetGame();
+        
+resetGame();   
 
+    
