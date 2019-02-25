@@ -23,6 +23,7 @@ directions.innerHTML = "Press Any Key To Start";
     function gameStart() {
 
         randomWord = words[Math.floor(Math.random() * words.length)];
+        //background colors
         function bgColor () {
             if (randomWord === words[0]) {
                 document.querySelector('.jumbotron').style.backgroundColor = "#5d3180";
@@ -69,7 +70,7 @@ directions.innerHTML = "Press Any Key To Start";
             } else if (randomWord === words[21]) {
                 document.querySelector('.jumbotron').style.backgroundColor = "#741748";
             } else if (randomWord === words[22]) {
-                document.querySelector('.jumbotron').style.backgroundColor = "#682860";
+                document.querySelector('.jumbotron').style.backgroundColor = "#65275d";
             } else if (randomWord === words[23]) {
                 document.querySelector('.jumbotron').style.backgroundColor = "#301829";
             } else if (randomWord === words[24]) {
@@ -77,6 +78,9 @@ directions.innerHTML = "Press Any Key To Start";
             } 
         }   
         bgColor()
+
+        //word for the game 
+        
         split = randomWord.split("");
         console.log(randomWord);
         
@@ -87,16 +91,10 @@ directions.innerHTML = "Press Any Key To Start";
             console.log(blankSpaces);
             blanks.innerHTML = "";
             alertText.innerHTML = "";
-
             guessNum = randomWord.length + 5;
-            
-        
-        
-
         } 
     
 // function that resets the game         
-
     function resetGame () {
             wrongArray = [];
             guessed.innerHTML = [];
@@ -104,19 +102,19 @@ directions.innerHTML = "Press Any Key To Start";
             wordLength = [];
             spacesLength = [];
             guessesLeft.innerHTML = guessNum;
-            
+            lossesText.innerHTML ="Losses: " + losses;
+            winsText.innerHTML ="Wins: " + wins;
+            blanks.innerHTML = blankSpaces.join(" ");
             gameStart();
-            
     }          
 
 // user input 
-
     document.onkeyup = function uniKeyCode(event) { 
 
             guessesLeft.innerHTML = "Guesses Remaining: " + guessNum;
             lossesText.innerHTML ="Losses: " + losses;
             winsText.innerHTML ="Wins: " + wins;
-            blanks.innerHTML = blankSpaces;
+            blanks.innerHTML = blankSpaces.join(" ");
             directions.innerHTML = "";
             
             var x = event.keyCode;
@@ -127,8 +125,7 @@ directions.innerHTML = "Press Any Key To Start";
                 
                 } else {
 
-                var userText = event.key.toLowerCase(); 
-
+                var userText = event.key.toLowerCase();
                 console.log(userText);
 
                 for (var a = 0; a < split.length; a++) {
@@ -152,19 +149,17 @@ directions.innerHTML = "Press Any Key To Start";
                     resetGame();
                 
                     } else if (guessNum === 1) {
-                        alertText.innerHTML = "just one guess left!"
+                        alertText.innerHTML = "Just one guess left!"
                 
                     } else if (guessNum === 0) {
                         alertText.innerHTML = "Game Over";
                         losses++;
                         losses.textContent = "Losses : " + losses;
-                        resetGame()
+                        resetGame();
                     }
                 }
     }
            
-               
-        
-resetGame();   
+resetGame(); 
 
     
