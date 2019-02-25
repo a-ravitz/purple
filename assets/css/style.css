@@ -1,6 +1,23 @@
 .jumbotron {
-    background-color:transparent !important
+    background-color: black;
+    height: 500px;
+    padding: 200px;
 }
-.body {
-    background-color: white;
+.t1 {
+    color: #301829;
+}
+.t2 {
+    color: #4e2784;
+}
+.t3 {
+    color: #5d3180;
+}
+.t4 {
+    color: #7c017c;
+}
+.t5 {
+    color: #9a00bf;
+}
+.t6 {
+    color: #b901f7;
 }

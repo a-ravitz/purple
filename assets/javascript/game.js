@@ -17,8 +17,6 @@ guessesLeft.innerHTML = "";
 var words = ["royal", "artists", "electric", "patriarch", "veronica", "medium", "munsell", "lavender", "mauve", "thistle", "orchid", "heliotrope", "pizzazz", "liseran", "mulberry", "pearly", "purpureus", "northwestern", "mardigras", "eminence", "byzantium", "pansy", "palatinate", "dark", "tyrian"];
 var randomWord = "";    
 var split = "";
-var wordLength = [];
-var spacesLength = [];
 var alertText = document.getElementById("alertText")
 
 
@@ -32,55 +30,55 @@ var alertText = document.getElementById("alertText")
         randomWord = words[Math.floor(Math.random() * words.length)];
         function bgColor () {
             if (randomWord === words[0]) {
-                document.body.style.backgroundColor = "#5d3180";
+                document.querySelector('.jumbotron').style.backgroundColor = "#5d3180";
             } else if (randomWord === words[1]) {
-                document.body.style.backgroundColor = "#c11481";
+                document.querySelector('.jumbotron').style.backgroundColor = "#c11481";
             } else if (randomWord === words[2]) {
-                document.body.style.backgroundColor = "#b901f7";
+                document.querySelector('.jumbotron').style.backgroundColor = "#b901f7";
             } else if (randomWord === words[3]) {
-                document.body.style.backgroundColor = "#7c017c";
+                document.querySelector('.jumbotron').style.backgroundColor = "#7c017c";
             } else if (randomWord === words[4]) {
-                document.body.style.backgroundColor = "#9b1ee8";
+                document.querySelector('.jumbotron').style.backgroundColor = "#9b1ee8";
             } else if (randomWord === words[5]) {
-                document.body.style.backgroundColor = "#8e6cd4";
+                document.querySelector('.jumbotron').style.backgroundColor = "#8e6cd4";
             } else if (randomWord === words[6]) {
-                document.body.style.backgroundColor = "#9a00bf";
+                document.querySelector('.jumbotron').style.backgroundColor = "#9a00bf";
             } else if (randomWord === words[7]) {
-                document.body.style.backgroundColor = "#f2dff2";
+                document.querySelector('.jumbotron').style.backgroundColor = "#f0d8f0";
             } else if (randomWord === words[8]) {
-                document.body.style.backgroundColor = "#d9aaf7";
+                document.querySelector('.jumbotron').style.backgroundColor = "#d9aaf7";
             } else if (randomWord === words[9]) {
-                document.body.style.backgroundColor = "#d1b9d1";
+                document.querySelector('.jumbotron').style.backgroundColor = "#d1b9d1";
             } else if (randomWord === words[10]) {
-                document.body.style.backgroundColor = "#d36dcf";
+                document.querySelector('.jumbotron').style.backgroundColor = "#d36dcf";
             } else if (randomWord === words[11]) {
-                document.body.style.backgroundColor = "#d76ff7";
+                document.querySelector('.jumbotron').style.backgroundColor = "#d76ff7";
             } else if (randomWord === words[12]) {
-                document.body.style.backgroundColor = "#f64bd3";
+                document.querySelector('.jumbotron').style.backgroundColor = "#f64bd3";
             } else if (randomWord === words[13]) {
-                document.body.style.backgroundColor = "#d76b9c";
+                document.querySelector('.jumbotron').style.backgroundColor = "#d76b9c";
             } else if (randomWord === words[14]) {
-                document.body.style.backgroundColor = "#bf4988";
+                document.querySelector('.jumbotron').style.backgroundColor = "#bf4988";
             } else if (randomWord === words[15]) {
-                document.body.style.backgroundColor = "#b1659d";
+                document.querySelector('.jumbotron').style.backgroundColor = "#b1659d";
             } else if (randomWord === words[16]) {
-                document.body.style.backgroundColor = "#954ba9#";
+                document.querySelector('.jumbotron').style.backgroundColor = "#954ba9";
             } else if (randomWord === words[17]) {
-                document.body.style.backgroundColor = "#4c2980";
+                document.querySelector('.jumbotron').style.backgroundColor = "#4c2980";
             } else if (randomWord === words[18]) {
-                document.body.style.backgroundColor = "#840081";
+                document.querySelector('.jumbotron').style.backgroundColor = "#840081";
             } else if (randomWord === words[19]) {
-                document.body.style.backgroundColor = "#692e7e";
+                document.querySelector('.jumbotron').style.backgroundColor = "#692e7e";
             } else if (randomWord === words[20]) {
-                document.body.style.backgroundColor = "#6d2860";
+                document.querySelector('.jumbotron').style.backgroundColor = "#6d2860";
             } else if (randomWord === words[21]) {
-                document.body.style.backgroundColor = "#741748";
+                document.querySelector('.jumbotron').style.backgroundColor = "#741748";
             } else if (randomWord === words[22]) {
-                document.body.style.backgroundColor = "#682860";
+                document.querySelector('.jumbotron').style.backgroundColor = "#682860";
             } else if (randomWord === words[23]) {
-                document.body.style.backgroundColor = "#301829";
+                document.querySelector('.jumbotron').style.backgroundColor = "#301829";
             } else if (randomWord === words[24]) {
-                document.body.style.backgroundColor = "#63023a";
+                document.querySelector('.jumbotron').style.backgroundColor = "#63023a";
             } 
         }   
         bgColor()
@@ -135,17 +133,16 @@ var alertText = document.getElementById("alertText")
                         match = true; 
                         blankSpaces[a] = split[a];
                         blanks.innerHTML = blankSpaces.join(" ");
-                        wordLength.push(userText)
                     } 
                 }    
 
                 if (!wrongArray.includes(userText)) {
                     wrongArray.push(userText);
-                    guessed.innerHTML = wrongArray.join(" ")
+                    guessed.innerHTML = wrongArray.join(" ");
                     guessNum--;
                     guessesLeft.textContent = "Guesses Remaining : " + guessNum;
                 } 
-                if  ( blankSpaces.join("") === randomWord) {
+                if  (blankSpaces.join("") === randomWord) {
                     wins++; 
                     wins.textContent = "Wins : " + wins;
                     resetGame();
