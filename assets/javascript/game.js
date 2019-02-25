@@ -1,24 +1,6 @@
-// Choose a theme for your game! 
-// Use key events to listen for the letters that your players type.
-// Display the following on the page:
-// Press any key to get started!
-// Wins: (# of times user guessed the word correctly).
-// If the word is madonna, display it like this when the game starts: _ _ _ _ _ _ _.
-// As the user guesses the correct letters, reveal them: m a d o _  _ a.
-// Number of Guesses Remaining: (# of guesses remaining for the user).
-// Letters Already Guessed: (Letters the user has guessed, displayed like L Z Y H).
-// After the user wins/loses the game should automatically choose another word and make the user play it.
 
+// freakin variables and stuff 
 
-
-
-
-
-// step 4. make a function that prints wrong letters to another variable.
-
-// step 5. make it so when proper letters are guessed they are revealed in order.
-
-// step 1. create variables for wins, loses, ties, and words 
 var wins = 0;
 var losses = 0;
 var guessNum = "";
@@ -32,21 +14,76 @@ var lossesText = document.getElementById("lossesText");
 var blanks = document.getElementById("spaces");
 directions.innerHTML = "Press Any Key To Start";
 guessesLeft.innerHTML = ""; 
-var words = ["royal", "artists", "electric", "patriarch", "veronica", "medium", "mussel", "pale", "mauve", "thistle", "orchid", "heliotrope", "phlox", "pizzazz", "liseran", "mulberry", "pearly", "purpureus", "northwestern", "ksu", "pompandpower", "mardigras", "eminence", "byzantium", "pansy", "palatinate", "dark"];
+var words = ["royal", "artists", "electric", "patriarch", "veronica", "medium", "munsell", "lavender", "mauve", "thistle", "orchid", "heliotrope", "pizzazz", "liseran", "mulberry", "pearly", "purpureus", "northwestern", "mardigras", "eminence", "byzantium", "pansy", "palatinate", "dark", "tyrian"];
 var randomWord = "";    
 var split = "";
 var wordLength = [];
 var spacesLength = [];
+var alertText = document.getElementById("alertText")
 
 
-    //game start//
+// game start
     function gameStart() {
-   
+        alertText.innerHTML = "";
         directions.innerHTML = "";
         guessesLeft.innerHTML = "Guesses Remaining : " + guessNum;
         lossesText.innerHTML ="Losses : " + losses;
         winsText.innerHTML ="Wins : " + wins;
         randomWord = words[Math.floor(Math.random() * words.length)];
+        function bgColor () {
+            if (randomWord === words[0]) {
+                document.body.style.backgroundColor = "#5d3180";
+            } else if (randomWord === words[1]) {
+                document.body.style.backgroundColor = "#c11481";
+            } else if (randomWord === words[2]) {
+                document.body.style.backgroundColor = "#b901f7";
+            } else if (randomWord === words[3]) {
+                document.body.style.backgroundColor = "#7c017c";
+            } else if (randomWord === words[4]) {
+                document.body.style.backgroundColor = "#9b1ee8";
+            } else if (randomWord === words[5]) {
+                document.body.style.backgroundColor = "#8e6cd4";
+            } else if (randomWord === words[6]) {
+                document.body.style.backgroundColor = "#9a00bf";
+            } else if (randomWord === words[7]) {
+                document.body.style.backgroundColor = "#f2dff2";
+            } else if (randomWord === words[8]) {
+                document.body.style.backgroundColor = "#d9aaf7";
+            } else if (randomWord === words[9]) {
+                document.body.style.backgroundColor = "#d1b9d1";
+            } else if (randomWord === words[10]) {
+                document.body.style.backgroundColor = "#d36dcf";
+            } else if (randomWord === words[11]) {
+                document.body.style.backgroundColor = "#d76ff7";
+            } else if (randomWord === words[12]) {
+                document.body.style.backgroundColor = "#f64bd3";
+            } else if (randomWord === words[13]) {
+                document.body.style.backgroundColor = "#d76b9c";
+            } else if (randomWord === words[14]) {
+                document.body.style.backgroundColor = "#bf4988";
+            } else if (randomWord === words[15]) {
+                document.body.style.backgroundColor = "#b1659d";
+            } else if (randomWord === words[16]) {
+                document.body.style.backgroundColor = "#954ba9#";
+            } else if (randomWord === words[17]) {
+                document.body.style.backgroundColor = "#4c2980";
+            } else if (randomWord === words[18]) {
+                document.body.style.backgroundColor = "#840081";
+            } else if (randomWord === words[19]) {
+                document.body.style.backgroundColor = "#692e7e";
+            } else if (randomWord === words[20]) {
+                document.body.style.backgroundColor = "#6d2860";
+            } else if (randomWord === words[21]) {
+                document.body.style.backgroundColor = "#741748";
+            } else if (randomWord === words[22]) {
+                document.body.style.backgroundColor = "#682860";
+            } else if (randomWord === words[23]) {
+                document.body.style.backgroundColor = "#301829";
+            } else if (randomWord === words[24]) {
+                document.body.style.backgroundColor = "#63023a";
+            } 
+        }   
+        bgColor()
         split = randomWord.split("");
         console.log(randomWord);
         
@@ -54,45 +91,43 @@ var spacesLength = [];
             blankSpaces[i]= ("_");
             spacesLength.push(blankSpaces);
         };
-
-            // console.log(randomWord); 
+            console.log(randomWord); 
             console.log(blankSpaces);
         blanks.innerHTML = blankSpaces;
         guessNum = randomWord.length + 5;
-    }        
 
-// a function that resets the game         
+        } 
+    
+// function that resets the game         
 
     function resetGame () {
             wrongArray = [];
+            guessed.innerHTML = [];
             blankSpaces = [];
             wordLength = [];
             spacesLength = [];
-            guessNum = randomWord.length + 5;
+            guessesLeft.innerHTML = randomWord.length + 5;
             gameStart();
             
-    }   
+    }          
 
-// creates the array of _ _ _ _ _ _ _ 
+// user input 
 
-            
-
-// user input //
-        // var start = false;  
-        document.onkeyup = function uniKeyCode(event) { 
-
+    document.onkeyup = function uniKeyCode(event) { 
+ 
             var x = event.keyCode;
             var match = false; 
             if ( x > 90 || x < 58 ) {
+                
                 console.log("oops");
-
+                
                 } else {
 
                 var userText = event.key.toLowerCase(); 
 
                 console.log(userText);
         
-                }
+                
 
                 for (var a = 0; a < split.length; a++) {
 
@@ -101,45 +136,31 @@ var spacesLength = [];
                         blankSpaces[a] = split[a];
                         blanks.innerHTML = blankSpaces.join(" ");
                         wordLength.push(userText)
-                        guessNum--;
-                        guessesLeft.textContent = "Guesses Remaining : " + guessNum;
-                    
                     } 
-
                 }    
 
-                if (match === false) {
-                    if (wrongArray.includes(userText)) {
-                         
-                         
-
-                    } else {
+                if (!wrongArray.includes(userText)) {
                     wrongArray.push(userText);
                     guessed.innerHTML = wrongArray.join(" ")
                     guessNum--;
                     guessesLeft.textContent = "Guesses Remaining : " + guessNum;
-                    
-                    }
-            
-
                 } 
-                if (wordLength.length === randomWord.length || wordLength.length === split.length || spacesLength.length === wordLength.length || blanks === split) {
-                    wins++; wins.textContent = "Wins : " + wins;
+                if  ( blankSpaces.join("") === randomWord) {
+                    wins++; 
+                    wins.textContent = "Wins : " + wins;
                     resetGame();
-
-                    // letters < split.length = lose
                 
-                } else if (guessNum === 1) {
-                        alert("just one guess left!")
+                    } else if (guessNum === 1) {
+                        alertText.innerHTML = "just one guess left!"
                 
-                    } else if (guessNum === 0 || guessNum < 0) {
-                        alert("Game Over");
+                    } else if (guessNum === 0) {
+                        alertText.innerHTML = "Game Over";
                         losses++;
                         losses.textContent = "Losses : " + losses;
                         resetGame()
                     }
-                
-        }
+                }
+    }
            
                
         

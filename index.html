@@ -6,19 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Purples!</title>
 </head>
 <body>
 
-        <p id="directionsText"></p>
-        <p id="winsText"></p>
-        <p id="lossesText"></p>
-        <p id="guessesRemaining"></p>
-        <p id="guessedLetters"></p>
-        <p id="spaces"></p>
-        
-    
+    <nav class="navbar navbar-light bg-light display-4">
+        <a class="navbar-brand " href="#"><h1>PURPLE</h1></a>
+    </nav>
+
+        <div class = "jumbotron text-light">
+        <div class = "row">
+        <div class = "col-md-6">
+            <p class ="text-center" id="directionsText"></p>
+            <p class ="text-center" id="spaces"></p>
+            <p class ="text-center" id="guessedLetters"></p>
+        </div>
+        <div class = "col-md-6">
+            <p id="winsText"></p>
+            <p id="lossesText"></p>
+            <p id="guessesRemaining"></p>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = col-md-12>
+            <br>
+            <br>
+            <p class = "text-center" id="alertText"></p>
+        </div>
+    </div>
+</div>    
+<div class = "container">
+
+</div>
+
 </body> 
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 </html>
