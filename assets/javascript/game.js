@@ -80,7 +80,6 @@ directions.innerHTML = "Press Any Key To Start";
         bgColor()
 
         //word for the game 
-        
         split = randomWord.split("");
         console.log(randomWord);
         
